@@ -1,5 +1,8 @@
+"use client"; // Indica que este componente se ejecutará en el cliente
+
 import React from 'react';
 import Image from 'next/image';
+import Swal from 'sweetalert2';
 
 interface ProductCardProps {
   nameProduct: string;
@@ -15,6 +18,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ nameProduct, description, ima
     currency: 'COP', // O 'USD' dependiendo de tu moneda
   }).format(price);
 
+  // Crear la ventana emergente al hacer clic en "Mostrar Detalles"
+  const showDetails = () => {
+    Swal.fire({
+      title: nameProduct,
+      text: `Descripción: ${description}\nPrecio: ${formattedPrice}`,
+      imageUrl: image,
+      imageWidth: 450,
+      imageHeight: 300,
+      confirmButtonText: 'Comprar ahora',
+    });
+  };
+
   return (
     <div className="col mb-5">
       <div className="card h-100">
@@ -26,6 +41,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ nameProduct, description, ima
           width={450}
           height={300}
         />
+        
         {/* Detalles del producto */}
         <div className="card-body p-4">
           <div className="text-center">
@@ -33,12 +49,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ nameProduct, description, ima
             <p>{formattedPrice}</p>
           </div>
         </div>
+
         {/* Acciones del producto */}
         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
           <div className="text-center">
-            <a className="btn btn-outline-dark mt-auto" href="#">
-              Add Card
-            </a>
+            <button 
+              className="btn btn-outline-dark mt-auto" 
+              onClick={showDetails} // Evento onClick que se ejecuta en el cliente
+            >
+              Mostrar Detalles
+            </button>
           </div>
         </div>
       </div>
