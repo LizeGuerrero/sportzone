@@ -1,9 +1,8 @@
 'use client';
-// src/app/layouts/MainLayout.tsx
-import React, { ReactNode } from 'react';
+
+import React, { ReactNode, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import Navbar from './Navbar';  // Importar el componente Navbar
+import Navbar from './Navbar';
 import Header from './Header';
 import Footer from './Footer';
 import styles from './MainLayout.module.css';
@@ -13,9 +12,15 @@ interface MainLayoutProps {
 }
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+  useEffect(() => {
+    // Importa el bootstrap.bundle.min.js solo en el cliente
+    // @ts-expect-error: Ignorar la falta de tipos para bootstrap.bundle.min.js
+    import('bootstrap/dist/js/bootstrap.bundle.min.js');
+  }, []); // Asegura que solo se cargue una vez, en el cliente
+
   return (
     <div className={styles.layout}>
-      <Navbar />  {/* Incluir el componente Navbar aquí */}
+      <Navbar />
       <Header />
       <main>{children}</main>
       <Footer />
@@ -24,5 +29,3 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 };
 
 export default MainLayout;
-
-

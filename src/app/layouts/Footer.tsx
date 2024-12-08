@@ -1,17 +1,11 @@
 'use client';
 
-import React, { useEffect } from 'react';
+
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa los estilos de Bootstrap
 
 
 const Footer: React.FC = () => {
-  useEffect(() => {
-    // Cargar Bootstrap JS dinámicamente en el cliente
-    if (typeof window !== 'undefined') {
-      import('bootstrap/dist/js/bootstrap.bundle.min.js')
-        .catch((err) => console.error('Bootstrap JS failed to load:', err));
-    }
-  }, []);
+
 
   return (
     <footer className="container py-5">
