@@ -46,7 +46,7 @@ export default function Home() {
                     image={product.image}  // Pasando la ruta de la imagen
                   />
                 </div>
-              ))}
+              ))};
             </div>
           </div>
         </main>
