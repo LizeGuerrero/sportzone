@@ -11,7 +11,7 @@ interface ProductCardProps {
   price: number;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ nameProduct, image, price }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ nameProduct, description, image, price }) => {
   // Formateo del precio como moneda
   const formattedPrice = new Intl.NumberFormat('es-ES', {
     style: 'currency',
